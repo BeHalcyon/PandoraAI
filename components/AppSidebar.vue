@@ -134,8 +134,8 @@ const updateConversationTitleHandler = (event) => {
                 :class="{ 'cursor-not-allowed': !!processingController }"
             >
                     <span class="flex flex-col flex-1 text-left">
-                        <span class="text-sm font-bold text-white/80">New Chat</span>
-                        <span class="text-xs text-white/60">Click to start a new chat</span>
+                        <span class="text-sm font-bold text-white/80">新的聊天</span>
+                        <span class="text-xs text-white/60">点击此处创建新的聊天记录</span>
                     </span>
                 <Icon name="bx:bx-plus" class="w-8 h-8"/>
             </button>
@@ -211,7 +211,7 @@ const updateConversationTitleHandler = (event) => {
                                 v-else
                                 class="flex-1 truncate flex items-center gap-1"
                             >
-                                {{ conversation.title || 'New Chat' }}
+                                {{ conversation.title || '未命名聊天记录' }}
                                 <button
                                     @click="e => startEditConversationTitle(conversation.id, e)"
                                     class="flex items-center justify-center text-white/30 hover:text-white/60 transition duration-300 ease-in-out"

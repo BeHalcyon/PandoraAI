@@ -20,7 +20,8 @@ const {
 } = storeToRefs(conversationsStore);
 
 useHead({
-    title: `${conversationTitle.value} - PandoraAI`,
+    // title: `${conversationTitle.value} - PandoraAI`,
+    title: `Fisher Chat Bot`,
     meta: [
         {
             name: 'viewport',
@@ -36,11 +37,9 @@ onMounted(() => {
 
 <template>
     <a
-        href="https://github.com/waylaidwanderer/PandoraAI"
         target="_blank"
         id="fork-corner"
-        class="fork-corner fc-size-small fc-pos-tr fc-animate fc-theme-github"
-        title="Fork me on GitHub"
+        class="fork-corner fc-size-small fc-pos-tr fc-animate"
     ></a>
     <div class="flex flex-row min-h-screen text-slate-300">
         <AppSidebar/>
@@ -87,17 +86,17 @@ onMounted(() => {
                     />
                 </button>
                 <!-- Title -->
-                <h1 class="text-2xl font-bold text-white/80 drop-shadow-md">Pandora<span class="font-light">AI</span></h1>
+                <h1 class="text-2xl font-bold text-white/80 drop-shadow-md">Chat Bot</h1>
             </header>
             <main class="flex flex-grow py-2">
                 <Chat/>
             </main>
             <footer class="px-3 pb-6 text-center">
                 <span class="text-xs font-light text-slate-400">
-                    powered by
-                    <a href="https://github.com/waylaidwanderer/node-chatgpt-api" target="_blank">
+                    
+                    <!-- <a href="https://github.com/waylaidwanderer/node-chatgpt-api" target="_blank">
                         https://github.com/waylaidwanderer/node-chatgpt-api
-                    </a>
+                    </a> -->
                 </span>
             </footer>
         </div>
@@ -112,9 +111,9 @@ onMounted(() => {
 body {
     background:
         radial-gradient(
-            60vmax 60vmax at 0% 0%,
-            hsla(240, 100%, 2%, 0.9) 0%,
-            hsla(240, 100%, 2%, 0) 95%),
+            60vmax 60vmax at 50% 0%,
+            hsla(0, 0%, 32%, 0.9) 0%,
+            hsla(0, 0%, 27%, 0.9) 95%),
         radial-gradient(
             80vmax 50vmax at 110% -10%,
             hsla(175, 100%, 60%, 0.9) 0%,
@@ -122,14 +121,14 @@ body {
             hsla(240, 100%, 50%, 0) 95%),
         radial-gradient(
             90vmax 50vmax at 50vmax 50vmax,
-            hsla(260, 100%, 60%, 0.9) 0%,
-            hsla(240, 100%, 60%, 0) 95%)
+            hsla(0, 0%, 100%, 0.9) 0%,
+            hsla(0, 0%, 2%, 0.9) 95%)
         var(--background);
 }
 
 footer a {
     @apply opacity-75 hover:opacity-100 transition duration-300 ease-in-out;
-    background: linear-gradient(to right, #37feff 0%, #bd7bff 100%);
+    background: linear-gradient(to right, #37feff 0%, #0aff2b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

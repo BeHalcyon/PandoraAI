@@ -548,10 +548,10 @@ if (!process.server) {
                             class="text-xs text-white/50 mb-1"
                         >
                             <template v-if="message.role === 'bot'">
-                                {{ activePresetToUse?.options?.clientOptions?.chatGptLabel || 'AI' }}
+                                {{ activePresetToUse?.options?.clientOptions?.chatGptLabel || 'Bot' }}
                             </template>
                             <template v-else-if="message.role === 'user'">
-                                {{ activePresetToUse?.options?.clientOptions?.userLabel || 'User' }}
+                                {{ activePresetToUse?.options?.clientOptions?.userLabel || '用户' }}
                             </template>
                             <template v-else>
                                 {{ message.role }}
@@ -584,7 +584,7 @@ if (!process.server) {
                             shadow rounded transition duration-300 ease-in-out hover:bg-white/20
                         "
                     >
-                        Stop
+                        停止回答
                     </button>
                     <button
                         v-for="response in suggestedResponses"
@@ -641,7 +641,7 @@ if (!process.server) {
                     :rows="inputRows"
                     v-model="message"
                     @keydown.enter.exact.prevent="sendMessage(message)"
-                    placeholder="Type your message here..."
+                    placeholder="在此处写入你的问题"
                     :disabled="!!processingController"
                     class="
                         py-4 pl-14 pr-14 rounded-l-sm text-slate-100 w-full bg-white/5
@@ -660,7 +660,7 @@ if (!process.server) {
                         && !processingController
                     "
                     @click="sendMessage(regenerateData.input, regenerateData.parentMessageId)"
-                    title="Regenerate"
+                    title="重新生成"
                     class="
                         flex items-center flex-1
                         px-4 text-slate-300 bg-white/5

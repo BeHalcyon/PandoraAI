@@ -151,45 +151,45 @@ const availableOptions = {
     bing: {
         stream: {
             type: 'checkbox',
-            label: 'Stream Responses',
+            label: '是否启用流式传输',
             default: true,
         },
         jailbreakMode: {
             type: 'checkbox',
-            label: 'Jailbreak Mode',
+            label: '是否启用越狱模式',
         },
         toneStyle: {
             type: 'select',
-            label: 'Tone Style',
+            label: '交流风格',
             options: [
                 {
-                    label: 'Creative',
+                    label: '更具有创造性',
                     value: 'creative',
                 },
                 {
-                    label: 'Balanced',
+                    label: '更加平衡',
                     value: 'balanced',
                 },
                 {
-                    label: 'Precise',
+                    label: '更加精准',
                     value: 'precise',
                 },
             ],
         },
-        clientOptions: {
-            type: 'nested',
-            label: 'Client Options',
-            properties: {
-                host: {
-                    type: 'text',
-                    label: 'Host (e.g. https://cn.bing.com)',
-                },
-                cookies: {
-                    type: 'textarea',
-                    label: 'Cookies',
-                },
-            },
-        },
+        // clientOptions: {
+        //     type: 'nested',
+        //     label: 'Client Options',
+        //     properties: {
+        //         host: {
+        //             type: 'text',
+        //             label: 'Host (e.g. https://cn.bing.com)',
+        //         },
+        //         cookies: {
+        //             type: 'textarea',
+        //             label: 'Cookies',
+        //         },
+        //     },
+        // },
     },
 };
 
@@ -210,12 +210,13 @@ const defaultSaveAsName = computed(() => {
         return props.presetName;
     }
     switch (props.client) {
+        case 'bing':
+            return 'Bing';
         case 'chatgpt':
             return 'OpenAI API';
         case 'chatgpt-browser':
             return 'ChatGPT';
-        case 'bing':
-            return 'Bing';
+        
         default:
             throw new Error('Invalid client');
     }
@@ -295,7 +296,7 @@ const generateForm = (options, parentKey, levels = 0) => Object.entries(options)
                 },
                 class: classList,
             }, [
-                h('option', { value: '' }, 'default server value'),
+                h('option', { value: '' }, '默认设置'),
                 ...option.options.map(_option => h('option', { value: _option.value }, _option.label)),
             ]);
             break;
@@ -410,7 +411,7 @@ watch(() => props.client, (client) => {
                             v-else-if="client === 'bing'"
                             class="h-10 py-2 mr-2 block shadow transition duration-300 ease-in-out rounded-lg"
                         />
-                        Settings
+                        设置
                     </DialogTitle>
 
                     <DialogDescription class="mt-3">
@@ -426,7 +427,7 @@ watch(() => props.client, (client) => {
 
                         <div class="flex flex-col sm:flex-row justify-end mt-4 gap-2">
                             <!-- Delete button -->
-                            <Transition name="fade">
+                            <!-- <Transition name="fade">
                                 <button
                                     v-if="saveAsName === defaultSaveAsName"
                                     type="button"
@@ -438,24 +439,24 @@ watch(() => props.client, (client) => {
                                 >
                                     <Icon name="bx:bx-trash" />
                                 </button>
-                            </Transition>
+                            </Transition> -->
                             <!-- Save as Name input -->
                             <div class="relative flex flex-col sm:flex-row items-stretch shadow-inner bg-white/5 rounded">
-                                <label
+                                <!-- <label
                                     class="
                                         text-white/60 text-xs h-full flex items-center px-3 py-2 border-white/5
                                         border-b sm:border-r sm:border-b-0
                                     "
                                 >
                                     Preset Name
-                                </label>
-                                <input
+                                </label> -->
+                                <!-- <input
                                     type="text"
                                     class="placeholder-white/40 bg-transparent text-slate-300 text-sm py-2 focus:outline-none pl-3 flex-1"
                                     placeholder="Preset Name"
                                     v-model="saveAsName"
-                                />
-                                <button
+                                /> -->
+                                <!-- <button
                                     class="
                                         flex items-center justify-center px-3 py-2 group
                                         bg-white/5 sm:bg-transparent
@@ -463,7 +464,7 @@ watch(() => props.client, (client) => {
                                     @click="resetSaveAsName"
                                 >
                                     <Icon name="bx:bx-reset" class="text-white/70 group-hover:text-white/90 transition" />
-                                </button>
+                                </button> -->
                             </div>
                             <button
                                 type="button"
@@ -479,9 +480,9 @@ watch(() => props.client, (client) => {
                             </button>
                         </div>
                         <!-- Fine print -->
-                        <div class="mt-2 text-xs text-white/60 text-center sm:text-right">
+                        <!-- <div class="mt-2 text-xs text-white/60 text-center sm:text-right">
                             Any changes to settings will not apply for existing conversations.
-                        </div>
+                        </div> -->
                     </DialogDescription>
                 </DialogPanel>
             </div>
