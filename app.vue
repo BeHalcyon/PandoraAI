@@ -112,8 +112,8 @@ body {
     background:
         radial-gradient(
             60vmax 60vmax at 50% 0%,
-            hsla(0, 0%, 32%, 0.9) 0%,
-            hsla(0, 0%, 27%, 0.9) 95%),
+            hsla(0, 0%, 22%, 0.9) 0%,
+            hsla(0, 0%, 15%, 0.9) 95%),
         radial-gradient(
             80vmax 50vmax at 110% -10%,
             hsla(175, 100%, 60%, 0.9) 0%,
@@ -155,7 +155,7 @@ footer a {
 }
 
 .fork-corner.fc-theme-github > i {
-    @apply text-white/80;
+    @apply text-white/0;
     font-size: 35px !important;
 }
 

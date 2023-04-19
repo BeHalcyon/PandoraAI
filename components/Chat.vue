@@ -538,14 +538,14 @@ if (!process.server) {
                     :key="message.id || index"
                 >
                     <div
-                        class="p-3 rounded-sm"
+                        class="p-3 rounded-sm mt-2 mb-2"
                         :class="{
-                            'bg-white/10 shadow': message.role === 'bot',
+                            'bg-white/20 shadow': message.role === 'bot' || message.role === 'user',
                         }"
                     >
                         <!-- role name -->
                         <div
-                            class="text-xs text-white/50 mb-1"
+                            class="text-xxs text-white/50 mb-1"
                         >
                             <template v-if="message.role === 'bot'">
                                 {{ activePresetToUse?.options?.clientOptions?.chatGptLabel || 'Bot' }}
@@ -559,7 +559,7 @@ if (!process.server) {
                         </div>
                         <!-- message text -->
                         <div
-                            class="prose prose-sm prose-chatgpt break-words max-w-6xl"
+                            class="prose prose-sm prose-chatgpt break-words max-w-6xl text-white/90"
                             v-html="(message.role === 'user' || message.raw) ? parseMarkdown(message.text) : parseMarkdown(message.text, true)"
                         />
                     </div>
@@ -645,7 +645,7 @@ if (!process.server) {
                     :disabled="!!processingController"
                     class="
                         py-4 pl-14 pr-14 rounded-l-sm text-slate-100 w-full bg-white/5
-                        placeholder-white/40 focus:outline-none resize-none placeholder:truncate
+                        placeholder-white/50 focus:outline-none resize-none placeholder:truncate
                     "
                     :class="{
                         'opacity-50 cursor-not-allowed': !!processingController,
