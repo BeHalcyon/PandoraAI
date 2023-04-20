@@ -656,8 +656,8 @@ if (!process.server) {
                     ref="inputTextElement"
                     :rows="inputRows"
                     v-model="message"
-                    @keydown.shift.enter.exact.prevent="sendMessage(message)"
-                    placeholder="在此处写入你的问题，键盘快捷键Shift+Enter"
+                    @keydown.ctrl.enter.exact.prevent="sendMessage(message)"
+                    placeholder="在此处写入你的问题，键盘快捷键Ctrl+Enter发送"
                     :disabled="!!processingController"
                     class="
                         py-4 pl-14 pr-14 rounded-l-sm text-black/90 w-full bg-white/50
