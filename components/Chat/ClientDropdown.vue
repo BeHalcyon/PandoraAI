@@ -71,7 +71,7 @@ onMounted(() => {
         <!-- <div class="flex items-center justify-start gap-2 shadow-sm bg-white/[15%] text-white/80 text-sm rounded-t py-1 px-3">
             Presets
         </div> -->
-        <div class="presets flex flex-col items-stretch bg-white/10 overflow-auto max-h-[160px]">
+        <div class="presets flex flex-col items-stretch bg-black/10 overflow-auto max-h-[160px]">
             <!-- <div class="w-full flex flex-row">
                 <button
                     class="px-3 py-1 flex-1 flex flex-row items-center transition ease-in-out text-sm"
@@ -114,7 +114,7 @@ onMounted(() => {
             </div> -->
             <div class="w-full flex flex-row">
                 <button
-                    class="w-full px-3 py-1 flex flex-row items-center transition ease-in-out text-sm border-t border-white/5"
+                    class="w-full px-3 py-1 flex flex-row items-center transition ease-in-out text-sm border-t border-white/75 text-black/50"
                     :class="{
                         'font-bold active': presetName === 'bing',
                         'hover:bg-white/20': canChangePreset,
@@ -126,7 +126,7 @@ onMounted(() => {
                     点击右边的设置按钮，设置聊天选项
                 </button>
                 <button
-                    class="hover:bg-white/20 px-3 py-1 flex items-center transition ease-in-out border-t border-white/5"
+                    class="hover:bg-white/20 px-3 py-1 flex items-center transition ease-in-out border-t border-black/20"
                     @click="setIsClientSettingsModalOpen(true, 'bing')"
                 >
                     <Icon class="w-5 h-5 text-white/70" name="bx:bxs-cog" />

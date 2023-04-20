@@ -41,8 +41,8 @@ onMounted(() => {
         id="fork-corner"
         class="fork-corner fc-size-small fc-pos-tr fc-animate"
     ></a>
-    <div class="flex flex-row min-h-screen text-slate-300">
-        <AppSidebar/>
+    <div class="flex flex-row min-h-screen text-slate-300  overflow-hidden backdrop-blur">
+        <!-- <AppSidebar/> -->
         <Transition name="fade">
             <div
                 v-if="isMenuOpen"
@@ -57,9 +57,9 @@ onMounted(() => {
                 'lg:ml-0': !isMenuOpening,
             }"
         >
-            <header class="px-3 py-6 text-center bg-purple-500/[15%] shadow relative">
+            <header class="px-3 py-4 text-center bg-[#696969]/30 shadow relative transition">
                 <!-- Menu icon -->
-                <button
+                <!-- <button
                     @click="isMenuOpen = true"
                     class="
                         absolute top-0 left-0 p-3 ml-3 mt-3 text-white/70 hover:text-white/90 z-10
@@ -69,9 +69,9 @@ onMounted(() => {
                     "
                 >
                     <Icon name="bx:bx-menu" class="w-8 h-8" />
-                </button>
+                </button> -->
                 <!-- Show/Hide sidebar button (lg) -->
-                <button
+                <!-- <button
                     @click="isMenuOpen = !isMenuOpen"
                     class="
                         absolute top-0 left-0 p-3 ml-3 mt-3 text-white/70 hover:text-white/90 z-10
@@ -84,9 +84,9 @@ onMounted(() => {
                         :name="isMenuOpen ? 'bx:bx-chevron-left' : 'bx:bx-chevron-right'"
                         class="w-8 h-8"
                     />
-                </button>
+                </button> -->
                 <!-- Title -->
-                <h1 class="text-2xl font-bold text-white/80 drop-shadow-md">Chat Bot</h1>
+                <h1 class="text-2xl font-bold text-black/60 drop-shadow-md">Chat Bot</h1>
             </header>
             <main class="flex flex-grow py-2">
                 <Chat/>
@@ -111,14 +111,15 @@ onMounted(() => {
 body {
     background:
         radial-gradient(
-            60vmax 60vmax at 50% 0%,
-            hsla(0, 0%, 22%, 0.9) 0%,
-            hsla(0, 0%, 15%, 0.9) 95%),
+            60vmax 60vmax at 50% 50%,
+            hsla(0, 0%, 100%, 0.9) 0%,
+            hsla(0, 0%, 96%, 0.9) 95%),
         radial-gradient(
-            80vmax 50vmax at 110% -10%,
-            hsla(175, 100%, 60%, 0.9) 0%,
-            hsla(200, 100%, 50%, 0.5) 50%,
-            hsla(240, 100%, 50%, 0) 95%),
+            80vmax 50vmax at 10% 0%,
+            hsla(243, 57%, 47%, 0.9) 0%,
+            hsla(157, 71%, 34%, 0.5) 50%,
+            hsla(319, 52%, 40%, 0.534) 95%),
+
         radial-gradient(
             90vmax 50vmax at 50vmax 50vmax,
             hsla(0, 0%, 100%, 0.9) 0%,

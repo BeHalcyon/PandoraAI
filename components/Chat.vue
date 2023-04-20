@@ -6,6 +6,7 @@ import hljs from 'highlight.js';
 import { storeToRefs } from 'pinia';
 import BingIcon from '~/components/Icons/BingIcon.vue';
 import GPTIcon from '~/components/Icons/GPTIcon.vue';
+import UserIcon from '~/components/Icons/UserIcon.vue';
 import ClientDropdown from '~/components/Chat/ClientDropdown.vue';
 import ClientSettings from '~/components/Chat/ClientSettings.vue';
 
@@ -38,9 +39,9 @@ const renderer = {
     >
         <path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"></path>
     </svg>
-    <span class="copy-status">Copy</span>
+    <span class="copy-status text-s">复制</span>
 </button>`.trim();
-        return `<pre class="p-0 relative">${copyButton}<code class="hljs${language ? ` language-${language}` : ''}">${highlightedCode}</code></pre>`;
+        return `<pre class="p-0 relative">${copyButton}<code style="font-size: 13px;" class="hljs${language ? ` language-${language}` : ''}">${highlightedCode}</code></pre>`;
     },
 };
 marked.use({ renderer });
@@ -145,6 +146,7 @@ const setChatContainerHeight = () => {
 };
 
 const sendMessage = async (input, parentMessageId = null) => {
+    isClientDropdownOpen.value = false;
     if (processingController.value) {
         return;
     }
@@ -446,13 +448,13 @@ if (!process.server) {
                 const copyStatus = el.querySelector('.copy-status');
                 if (copyStatus) {
                     // set text to "Copied"
-                    copyStatus.innerText = 'Copied';
+                    copyStatus.innerText = '复制成功';
                     setTimeout(() => {
                         if (!copyStatus) {
                             return;
                         }
                         // set text back to "Copy"
-                        copyStatus.innerText = 'Copy';
+                        copyStatus.innerText = '复制';
                     }, 3000);
                 }
                 return;
@@ -524,7 +526,7 @@ if (!process.server) {
             :preset-name="clientSettingsModalPresetName"
         />
     </client-only>
-    <div class="flex flex-col flex-grow items-center relative">
+    <div class="flex flex-col flex-grow items-center relative w-full">
         <!--suppress CssInvalidPropertyValue -->
         <div
             ref="messagesContainerElement"
@@ -533,22 +535,31 @@ if (!process.server) {
         >
             <TransitionGroup name="messages">
                 <div
-                    class="max-w-4xl w-full mx-auto message"
+                    class="max-w-6xl w-full mx-auto message"
                     v-for="(message, index) in messages"
                     :key="message.id || index"
                 >
                     <div
-                        class="p-3 rounded-sm mt-2 mb-2"
+                        class="p-3 rounded-lg mt-3 mb-3 w-full"
                         :class="{
-                            'bg-white/20 shadow': message.role === 'bot' || message.role === 'user',
+                            'bg-white/90 shadow w-full': message.role === 'bot',
+                            'bg-white/30 shadow w-full': message.role === 'user',
                         }"
                     >
                         <!-- role name -->
                         <div
-                            class="text-xxs text-white/50 mb-1"
+                            class="text-xxs text-black/50 font-bold drop-shadow-md mb-1 flex items-center"
                         >
+                        <BingIcon
+                            v-if="message.role === 'bot'"
+                            class="w-9 h-9 p-2 block transition duration-300 ease-in-out rounded-lg hover:bg-black/30 cursor-pointer hover:shadow"
+                        />
+                        <UserIcon
+                        v-else-if="message.role === 'user'"
+                            class="w-9 h-9 p-2 block transition duration-300 ease-in-out rounded-lg hover:bg-black/30 cursor-pointer hover:shadow"
+                        />
                             <template v-if="message.role === 'bot'">
-                                {{ activePresetToUse?.options?.clientOptions?.chatGptLabel || 'Bot' }}
+                                {{ activePresetToUse?.options?.clientOptions?.chatGptLabel || 'FisherBot' }}
                             </template>
                             <template v-else-if="message.role === 'user'">
                                 {{ activePresetToUse?.options?.clientOptions?.userLabel || '用户' }}
@@ -557,9 +568,13 @@ if (!process.server) {
                                 {{ message.role }}
                             </template>
                         </div>
-                        <!-- message text -->
+                        <!-- message text 以下内容会对超链接、加粗字体显示为白色 -->
+                        <!-- <div
+                            class="prose prose-sm prose-chatgpt break-words max-w-6xl text-black/90"
+                            v-html="(message.role === 'user' || message.raw) ? parseMarkdown(message.text) : parseMarkdown(message.text, true)"
+                        /> -->
                         <div
-                            class="prose prose-sm prose-chatgpt break-words max-w-6xl text-white/90"
+                            class="prose break-words max-w-6xl text-black/90 px-2"
                             v-html="(message.role === 'user' || message.raw) ? parseMarkdown(message.text) : parseMarkdown(message.text, true)"
                         />
                     </div>
@@ -568,7 +583,7 @@ if (!process.server) {
         </div>
         <div
             ref="inputContainerElement"
-            class="mx-auto w-full max-w-4xl px-3 xl:px-0 flex flex-row absolute left-0 right-0 mb-7 sm:mb-0 z-10"
+            class="mx-auto w-full max-w-6xl px-3 xl:px-0 flex flex-row absolute left-0 right-0 mb-7 sm:mb-0 z-10"
         >
             <div class="relative flex flex-row w-full justify-center items-stretch rounded shadow">
                 <div
@@ -580,8 +595,8 @@ if (!process.server) {
                         v-if="processingController"
                         @click="stopProcessing"
                         class="
-                            flex-1 py-2 px-5 bg-white/10 text-slate-300 text-sm
-                            shadow rounded transition duration-300 ease-in-out hover:bg-white/20
+                            flex-1 py-2 px-5 bg-[#DC143C]/60 text-black/80 text-sm text-bold
+                            shadow rounded transition duration-300 ease-in-out hover:bg-[#DC143C]/80
                         "
                     >
                         停止回答
@@ -591,8 +606,8 @@ if (!process.server) {
                         :key="response"
                         @click="sendMessage(response)"
                         class="
-                            flex-1 py-2 px-3 bg-white/10 text-slate-300 text-sm
-                            shadow rounded transition duration-300 ease-in-out hover:bg-white/20
+                            flex-1 py-2 px-3 bg-black/5 text-[#2F4F4F]/80 text-sm text-bold
+                            shadow rounded transition duration-300 ease-in-out hover:bg-black/20
                         "
                     >
                         {{ response }}
@@ -612,8 +627,15 @@ if (!process.server) {
                     class="flex items-center w-10 h-10 my-auto ml-2 justify-center absolute left-0 top-0 bottom-0 z-10"
                 >
                     <Transition name="fade" mode="out-in">
+                        <BingIcon
+                            v-if="activePresetNameToUse === 'bing' || activePresetToUse?.client === 'bing'"
+                            class="w-10 h-10 p-2 block transition duration-300 ease-in-out rounded-lg hover:bg-black/30 cursor-pointer hover:shadow"
+                            :class="{
+                                'bg-black/30 shadow': isClientDropdownOpen,
+                            }"
+                        />
                         <GPTIcon
-                            v-if="activePresetNameToUse === 'chatgpt' || activePresetToUse?.client === 'chatgpt'"
+                            v-else-if="activePresetNameToUse === 'chatgpt' || activePresetToUse?.client === 'chatgpt'"
                             class="w-10 h-10 p-2 block transition duration-300 ease-in-out rounded-lg hover:bg-black/30 cursor-pointer hover:shadow"
                             :class="{
                                 'bg-black/30 shadow': isClientDropdownOpen,
@@ -627,26 +649,21 @@ if (!process.server) {
                                 'bg-black/30 shadow': isClientDropdownOpen,
                             }"
                         />
-                        <BingIcon
-                            v-else-if="activePresetNameToUse === 'bing' || activePresetToUse?.client === 'bing'"
-                            class="w-10 h-10 p-2 block transition duration-300 ease-in-out rounded-lg hover:bg-black/30 cursor-pointer hover:shadow"
-                            :class="{
-                                'bg-black/30 shadow': isClientDropdownOpen,
-                            }"
-                        />
+                        
                     </Transition>
                 </button>
                 <textarea
                     ref="inputTextElement"
                     :rows="inputRows"
                     v-model="message"
-                    @keydown.enter.exact.prevent="sendMessage(message)"
-                    placeholder="在此处写入你的问题"
+                    @keydown.shift.enter.exact.prevent="sendMessage(message)"
+                    placeholder="在此处写入你的问题，键盘快捷键Shift+Enter"
                     :disabled="!!processingController"
                     class="
-                        py-4 pl-14 pr-14 rounded-l-sm text-slate-100 w-full bg-white/5
-                        placeholder-white/50 focus:outline-none resize-none placeholder:truncate
+                        py-4 pl-14 pr-14 rounded-l-sm text-black/90 w-full bg-white/50
+                        placeholder-black/40 focus:outline-none resize-none placeholder:truncate
                     "
+                    
                     :class="{
                         'opacity-50 cursor-not-allowed': !!processingController,
                     }"
@@ -663,9 +680,9 @@ if (!process.server) {
                     title="重新生成"
                     class="
                         flex items-center flex-1
-                        px-4 text-slate-300 bg-white/5
+                        px-4 text-black/70 bg-[#32CD32]/60
                         transition duration-300 ease-in-out
-                        hover:bg-white/10
+                        hover:bg-[#32CD32]/100
                     "
                 >
                     <Icon name="bx:bx-refresh" class="w-7 h-7"/>
@@ -676,12 +693,12 @@ if (!process.server) {
                     :disabled="!!processingController"
                     class="
                         flex items-center flex-1
-                        px-4 text-slate-300 rounded-r-sm bg-white/5
+                        px-4 text-black/60 rounded-r-sm bg-[#4169E1]/60
                         transition duration-300 ease-in-out
                     "
                     :class="{
                         'opacity-50 cursor-not-allowed': !!processingController,
-                        'hover:bg-white/10': !processingController,
+                        'hover:bg-[#4169E1]/100': !processingController,
                     }"
                 >
                     <Icon class="w-5 h-5" name="bx:bxs-send" />
