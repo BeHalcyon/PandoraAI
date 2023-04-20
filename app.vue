@@ -57,7 +57,7 @@ onMounted(() => {
                 'lg:ml-0': !isMenuOpening,
             }"
         >
-            <header class="px-3 py-4 text-center bg-[#AFEEEE]/30 shadow relative transition">
+            <header class="px-3 py-4 text-center bg-[#87CEEB]/40 shadow relative transition">
                 <!-- Menu icon -->
                 <!-- <button
                     @click="isMenuOpen = true"
