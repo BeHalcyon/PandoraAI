@@ -163,7 +163,7 @@ const availableOptions = {
             label: '交流风格',
             options: [
                 {
-                    label: '更具有创造性',
+                    label: '更加灵活',
                     value: 'creative',
                 },
                 {
@@ -383,7 +383,7 @@ watch(() => props.client, (client) => {
 <template>
     <Dialog :open="isOpen" @close="setIsOpen(false)" class="relative z-50">
         <!-- The backdrop, rendered as a fixed sibling to the panel container -->
-        <div class="fixed inset-0 bg-black/30" aria-hidden="true" />
+        <div class="fixed inset-0 bg-black/60" aria-hidden="true" />
 
         <!-- Full-screen scrollable container -->
         <div class="fixed inset-0 overflow-y-auto">
@@ -476,7 +476,7 @@ watch(() => props.client, (client) => {
                                 "
                                 @click="save"
                             >
-                                <Icon name="bx:bx-save" class="relative text-lg top-[1px] ml-4" /> <span class="mr-4">Save</span>
+                                <Icon name="bx:bx-save" class="relative text-lg top-[1px] ml-4" /> <span class="mr-4">保存</span>
                             </button>
                         </div>
                         <!-- Fine print -->
