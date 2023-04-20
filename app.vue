@@ -57,7 +57,7 @@ onMounted(() => {
                 'lg:ml-0': !isMenuOpening,
             }"
         >
-            <header class="px-3 py-4 text-center bg-[#9370DB]/30 shadow relative transition">
+            <header class="px-3 py-4 text-center bg-[#AFEEEE]/30 shadow relative transition">
                 <!-- Menu icon -->
                 <!-- <button
                     @click="isMenuOpen = true"
@@ -112,13 +112,13 @@ body {
     background:
         radial-gradient(
             60vmax 60vmax at 50% 50%,
-            hsla(0, 0%, 100%, 0.9) 0%,
-            hsla(0, 0%, 96%, 0.9) 95%),
+            hsla(0, 0%, 100%, 0.88) 0%,
+            hsla(0, 0%, 96%, 0.88) 95%),
         radial-gradient(
-            80vmax 50vmax at 10% 0%,
-            hsla(243, 57%, 47%, 0.9) 0%,
-            hsla(157, 71%, 34%, 0.5) 50%,
-            hsla(319, 52%, 40%, 0.534) 95%),
+            80vmax 50vmax at 60% 0%,
+            hsla(153, 88%, 43%, 0.9) 0%,
+            hsla(241, 91%, 43%, 0.5) 50%,
+            hsla(43, 91%, 49%, 0.534) 95%),
 
         radial-gradient(
             90vmax 50vmax at 50vmax 50vmax,

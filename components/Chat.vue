@@ -543,7 +543,7 @@ if (!process.server) {
                         class="p-3 rounded-lg mt-3 mb-3 w-full"
                         :class="{
                             'bg-white/90 shadow w-full': message.role === 'bot',
-                            'bg-white/30 shadow w-full': message.role === 'user',
+                            'bg-white/40 shadow w-full': message.role === 'user',
                         }"
                     >
                         <!-- role name -->
