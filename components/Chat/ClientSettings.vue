@@ -151,27 +151,27 @@ const availableOptions = {
     bing: {
         stream: {
             type: 'checkbox',
-            label: '是否启用流式传输',
+            label: '是否启用流式模式（动态输出）',
             default: true,
         },
         jailbreakMode: {
             type: 'checkbox',
-            label: '是否启用越狱模式',
+            label: '是否启用越狱模式（突破限制，满足一切）',
         },
         toneStyle: {
             type: 'select',
             label: '交流风格',
             options: [
                 {
-                    label: '更加灵活',
+                    label: '灵活',
                     value: 'creative',
                 },
                 {
-                    label: '更加平衡',
+                    label: '均衡',
                     value: 'balanced',
                 },
                 {
-                    label: '更加精准',
+                    label: '精准',
                     value: 'precise',
                 },
             ],

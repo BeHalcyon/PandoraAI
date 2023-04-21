@@ -529,6 +529,7 @@ if (!process.server) {
     <div class="flex flex-col flex-grow items-center relative w-full">
         <!--suppress CssInvalidPropertyValue -->
         <div
+            @click="isClientDropdownOpen = false"
             ref="messagesContainerElement"
             class="overflow-y-auto w-full rounded-sm pb-12 px-3"
             style="overflow: overlay;"
@@ -548,7 +549,7 @@ if (!process.server) {
                     >
                         <!-- role name -->
                         <div
-                            class="text-xxs text-black/50 font-bold drop-shadow-md mb-1 flex items-center"
+                            class="text-base text-black/50 font-bold drop-shadow-md mb-1 flex items-center"
                         >
                         <BingIcon
                             v-if="message.role === 'bot'"
@@ -574,7 +575,7 @@ if (!process.server) {
                             v-html="(message.role === 'user' || message.raw) ? parseMarkdown(message.text) : parseMarkdown(message.text, true)"
                         /> -->
                         <div
-                            class="prose break-words max-w-6xl text-black/90 px-2"
+                            class="prose prose-sm break-words max-w-6xl text-black/90 px-2 leading-tight"
                             v-html="(message.role === 'user' || message.raw) ? parseMarkdown(message.text) : parseMarkdown(message.text, true)"
                         />
                     </div>
@@ -627,7 +628,7 @@ if (!process.server) {
                     class="flex items-center w-10 h-10 my-auto ml-2 justify-center absolute left-0 top-0 bottom-0 z-10"
                 >
                     <Transition name="fade" mode="out-in">
-                        <BingIcon
+                        <UserIcon
                             v-if="activePresetNameToUse === 'bing' || activePresetToUse?.client === 'bing'"
                             class="w-10 h-10 p-2 block transition duration-300 ease-in-out rounded-lg hover:bg-black/30 cursor-pointer hover:shadow"
                             :class="{

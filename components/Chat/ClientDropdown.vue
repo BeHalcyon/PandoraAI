@@ -126,7 +126,7 @@ onMounted(() => {
                     点击右边的设置按钮，设置聊天选项
                 </button>
                 <button
-                    class="hover:bg-white/20 px-3 py-1 flex items-center transition ease-in-out border-t border-black/20"
+                    class="hover:bg-black/20 px-3 py-1 flex items-center transition ease-in-out border-t border-white/75"
                     @click="setIsClientSettingsModalOpen(true, 'bing')"
                 >
                     <Icon class="w-5 h-5 text-white/70" name="bx:bxs-cog" />

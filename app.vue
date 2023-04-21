@@ -58,7 +58,7 @@ onMounted(() => {
                 'lg:ml-0': !isMenuOpening,
             }"
         >
-            <header class="px-3 py-4 text-center bg-[#87CEEB]/40 shadow relative transition">
+            <header class="px-3 py-3 text-center bg-[#87CEEB]/40 shadow relative transition">
                 <!-- Menu icon -->
                 <!-- <button
                     @click="isMenuOpen = true"
@@ -87,7 +87,7 @@ onMounted(() => {
                     />
                 </button> -->
                 <!-- Title -->
-                <h1 class="text-2xl font-bold text-black/60 drop-shadow-md">集成chatgpt4和实时搜索功能的智能AI</h1>
+                <h1 class="text-xl font-bold text-black/60 drop-shadow-md">集成chatgpt4和实时搜索功能的智能AI</h1>
             </header>
             <main class="flex flex-grow py-2">
                 <Chat/>
