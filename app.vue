@@ -43,7 +43,7 @@ onMounted(() => {
         class="fork-corner fc-size-small fc-pos-tr fc-animate"
     ></a>
     <div class="flex flex-row min-h-screen text-slate-300  overflow-hidden backdrop-blur">
-        <!-- <AppSidebar/> -->
+        <AppSidebar/>
         <Transition name="fade">
             <div
                 v-if="isMenuOpen"
@@ -60,22 +60,22 @@ onMounted(() => {
         >
             <header class="px-3 py-3 text-center bg-[#87CEEB]/40 shadow relative transition">
                 <!-- Menu icon -->
-                <!-- <button
+                <button
                     @click="isMenuOpen = true"
                     class="
-                        absolute top-0 left-0 p-3 ml-3 mt-3 text-white/70 hover:text-white/90 z-10
+                        absolute top-0 left-0 p-3  text-black/70 hover:text-white/90 z-10 mb-22
                         focus:outline-none
                         transition duration-300 ease-in-out
                         lg:hidden
                     "
                 >
                     <Icon name="bx:bx-menu" class="w-8 h-8" />
-                </button> -->
+                </button>
                 <!-- Show/Hide sidebar button (lg) -->
-                <!-- <button
+                <button
                     @click="isMenuOpen = !isMenuOpen"
                     class="
-                        absolute top-0 left-0 p-3 ml-3 mt-3 text-white/70 hover:text-white/90 z-10
+                        absolute top-0 left-0 p-3  text-black/70 hover:text-white/90 z-10
                         focus:outline-none
                         transition duration-300 ease-in-out
                         hidden lg:block
@@ -85,7 +85,7 @@ onMounted(() => {
                         :name="isMenuOpen ? 'bx:bx-chevron-left' : 'bx:bx-chevron-right'"
                         class="w-8 h-8"
                     />
-                </button> -->
+                </button>
                 <!-- Title -->
                 <h1 class="text-xl font-bold text-black/60 drop-shadow-md">集成chatgpt4和实时搜索功能的智能AI</h1>
             </header>
@@ -118,7 +118,7 @@ body {
         radial-gradient(
             80vmax 50vmax at 60% 0%,
             hsla(153, 88%, 43%, 0.9) 0%,
-            hsla(241, 91%, 43%, 0.5) 50%,
+            hsla(240, 14%, 67%, 0.5) 50%,
             hsla(43, 91%, 49%, 0.534) 95%),
 
         radial-gradient(

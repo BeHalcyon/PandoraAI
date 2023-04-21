@@ -1,18 +1,21 @@
+
 export const useConversationsStore = defineStore('conversationsStore', () => {
     const newConversationCounter = ref(0);
     const conversations = useLocalStorage('conversations/v1', {});
     const currentConversationId = ref('');
     const processingController = ref(null);
 
+    
     const currentConversation = computed(() => {
         if (!currentConversationId.value) {
             return null;
         }
         return conversations.value[currentConversationId.value] || null;
     });
-    const conversationTitle = computed(() => currentConversation.value?.title || 'New Chat');
+    const conversationTitle = computed(() => currentConversation.value?.title || '未命名对话');
 
     function updateConversation(id, updatedConversationData, messages, activePresetName, activePreset) {
+
         currentConversationId.value = id;
         const conversation = conversations.value[id];
         if (conversation) {
@@ -24,7 +27,7 @@ export const useConversationsStore = defineStore('conversationsStore', () => {
         conversations.value[id] = {
             id,
             data: updatedConversationData,
-            title: updatedConversationData.title || 'New Chat',
+            title: updatedConversationData.title || '未命名对话 - ' + id.slice(0, 5).padEnd(5, 'x'),
             messages,
             createdAt: Date.now(),
             updatedAt: Date.now(),
