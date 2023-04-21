@@ -59,7 +59,7 @@ const clearConversationsHandler = () => {
     if (!isConfirmingClear.value) {
         isConfirmingClear.value = setTimeout(() => {
             isConfirmingClear.value = false;
-        }, 3000);
+        }, 2000);
         return;
     }
     clearConversations();
@@ -90,6 +90,7 @@ const updateConversationTitleHandler = (event) => {
 
 <template>
     <div
+
         class="
             flex flex-col flex-1 max-w-xs shadow-lg
             absolute top-0 left-0 h-screen z-50 w-full backdrop-blur-lg
@@ -105,6 +106,7 @@ const updateConversationTitleHandler = (event) => {
         <Transition name="fade">
             <div
                 v-if="isMenuOpen || isMenuClosing"
+                
                 class="absolute top-0 -right-8 bottom-0 flex items-center lg:hidden"
             >
                 <button
@@ -209,7 +211,7 @@ const updateConversationTitleHandler = (event) => {
                             </span>
                             <span
                                 v-else
-                                class="flex-1 truncate flex items-center gap-1"
+                                class="flex-1 truncate flex items-center gap-1 text-bold"
                             >
                                 {{ conversation.title || '未命名对话记录' }}
                                 <button
@@ -225,7 +227,7 @@ const updateConversationTitleHandler = (event) => {
                         <!-- <span class="text-xs text-white/30 truncate">
                             {{ conversation.id }}
                         </span> -->
-                        <span class="text-xs text-black/80 text-b">
+                        <span class="text-sm text-black/80 text-b">
                             创建日期：{{ (new Date(conversation.updatedAt)).toLocaleString() }}
                         </span>
                     </div>
