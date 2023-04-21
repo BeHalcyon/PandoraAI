@@ -549,7 +549,7 @@ if (!process.server) {
                     >
                         <!-- role name -->
                         <div
-                            class="text-base text-black/50 font-bold drop-shadow-md mb-1 flex items-center"
+                            class="text-[0.9375em] text-black/50 font-bold drop-shadow-md mb-1 flex items-center"
                         >
                         <BingIcon
                             v-if="message.role === 'bot'"
@@ -575,7 +575,7 @@ if (!process.server) {
                             v-html="(message.role === 'user' || message.raw) ? parseMarkdown(message.text) : parseMarkdown(message.text, true)"
                         /> -->
                         <div
-                            class="prose prose-sm break-words max-w-6xl text-black/90 px-2 leading-tight"
+                            class="prose prose-sm space-y-3 text-[0.9375em] break-words max-w-6xl text-black/90 px-2 leading-tight"
                             v-html="(message.role === 'user' || message.raw) ? parseMarkdown(message.text) : parseMarkdown(message.text, true)"
                         />
                     </div>
