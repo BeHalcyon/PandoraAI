@@ -87,7 +87,7 @@ onMounted(() => {
                     />
                 </button> -->
                 <!-- Title -->
-                <h1 class="text-xl font-bold text-black/60 drop-shadow-md">集成chatgpt4和实时搜索功能的智能AI</h1>
+                <h1 class="text-xl font-bold text-black/60 drop-shadow-md">对话搜索工具</h1>
             </header>
             <main class="flex flex-grow py-2">
                 <Chat/>
