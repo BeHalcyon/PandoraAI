@@ -560,7 +560,7 @@ if (!process.server) {
                             class="w-9 h-9 p-2 block transition duration-300 ease-in-out rounded-lg hover:bg-black/30 cursor-pointer hover:shadow"
                         />
                             <template v-if="message.role === 'bot'">
-                                {{ activePresetToUse?.options?.clientOptions?.chatGptLabel || 'FisherBot' }}
+                                {{ activePresetToUse?.options?.clientOptions?.chatGptLabel || 'AstChat' }}
                             </template>
                             <template v-else-if="message.role === 'user'">
                                 {{ activePresetToUse?.options?.clientOptions?.userLabel || '用户' }}

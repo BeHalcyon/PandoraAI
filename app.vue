@@ -21,7 +21,7 @@ const {
 
 useHead({
     // title: `${conversationTitle.value} - PandoraAI`,
-    title: `Fisher Chat Bot`,
+    title: `AstChat: 划时代智能聊天助手`,
     meta: [
         {
             name: 'viewport',
@@ -87,7 +87,7 @@ onMounted(() => {
                     />
                 </button>
                 <!-- Title -->
-                <h1 class="text-xl font-bold text-black/60 drop-shadow-md">Fisher Chatbot</h1>
+                <h1 class="text-xl font-bold text-black/60 drop-shadow-md">AstChat</h1>
             </header>
             <main class="flex flex-grow py-2">
                 <Chat 
