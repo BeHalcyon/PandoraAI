@@ -6,6 +6,25 @@ import initForkCorner from '~/fork-corner';
 import AppSidebar from '~/components/AppSidebar.vue';
 import { useAppStore } from '~/stores/app';
 import { useConversationsStore } from '~/stores/conversations';
+// import { sign } from 'crypto';
+
+// import { createAuth0 } from '@auth0/auth0-vue';
+
+// import auth from "@/authfile";
+
+const { status, data, signOut, signIn } = useAuth()
+
+console.log(status.value)
+console.log(data.value)
+
+if (status.value == "unauthenticated") {
+    // 自动跳转到登录界面
+    await signIn()
+}
+
+
+// await signIn()
+// await signOut()
 
 const appStore = useAppStore();
 const conversationsStore = useConversationsStore();
@@ -34,9 +53,15 @@ useHead({
 onMounted(() => {
     initForkCorner();
 });
+
+
+
+
 </script>
 
 <template>
+
+
     <a
         target="_blank"
         id="fork-corner"
@@ -104,6 +129,34 @@ onMounted(() => {
             </footer>
         </div>
     </div>
+
+
+    <div class="w-full max-w-5xl mx-auto bg-white px-5 py-4 rounded-t shadow-xl">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <img
+              v-if="status === 'authenticated' && data?.user?.image"
+              class="w-12 h-12 rounded-full"
+              :src="data.user.image"
+              alt="User Avatar"
+          />
+          <h1 v-if="status === 'authenticated'" class="text-lg">
+            Authenticated as {{ data?.user?.name }}!
+          </h1>
+          <h1 v-else>
+            Not logged in
+          </h1>
+        </div>
+        <button v-if="status === 'authenticated'" class="flex items-center justify-center space-x-2 bg-red-500 text-white rounded-lg py-2 px-3 text-lg" @click="signOut({ callbackUrl: '/' })">
+          <span>Logout</span>
+        </button>
+        <button v-else class="flex items-center justify-center space-x-2 bg-green-500 text-white rounded-lg py-2 px-3 text-lg" @click="signIn()">
+          <i class="fa fa-right-to-bracket pt-0.5" />
+          <span>Login</span>
+      </button>
+      </div>
+    </div>
+
 </template>
 
 <style>

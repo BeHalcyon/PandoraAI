@@ -10,6 +10,9 @@ import UserIcon from '~/components/Icons/UserIcon.vue';
 import ClientDropdown from '~/components/Chat/ClientDropdown.vue';
 import ClientSettings from '~/components/Chat/ClientSettings.vue';
 
+
+const { status, data, signOut, signIn } = useAuth()
+
 marked.setOptions({
     silent: true,
     xhtml: true,
