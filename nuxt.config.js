@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     ],
     auth: {
         isEnabled: true,
-        origin: process.env.ORIGIN,
+        origin: "http://astchat.metaunzip.fun:3000",
         basePath: '/api/auth',
         enableSessionRefreshPeriodically: false,
         globalAppMiddleware: false,
