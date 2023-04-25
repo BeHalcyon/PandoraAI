@@ -1,52 +1,52 @@
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
 import { NuxtAuthHandler } from "#auth";
-import * as CryptoJS from "crypto-js";
+// import * as CryptoJS from "crypto-js";
 
 //秘钥
-const CRYPTOJSKEY = "l_0ak(*kl230(*[s";
-const iv = "0102030405060708";
+// const CRYPTOJSKEY = "l_0ak(*kl230(*[s";
+// const iv = "0102030405060708";
 
-export class AesManager {
+// export class AesManager {
 
-    //加密
-    /*
-    * {param} plaintText 加密明文
-    * return  str 加密结果
-    */
-    public static encrypt(plaintText: string): string {
-        var plaintText = plaintText;
-        var options = {
-            iv: CryptoJS.enc.Utf8.parse(iv),
-            mode: CryptoJS.mode.CBC,
-            padding: CryptoJS.pad.Pkcs7
-        };
-        var key = CryptoJS.enc.Utf8.parse(CRYPTOJSKEY);
-        var encryptedData = CryptoJS.AES.encrypt(plaintText, key, options);
-        var encryptedBase64Str = encryptedData.toString();
-        return encryptedBase64Str;
-    }
-    //解密
-    /*
-    * {param} plaintText 解密密文
+//     //加密
+//     /*
+//     * {param} plaintText 加密明文
+//     * return  str 加密结果
+//     */
+//     public static encrypt(plaintText: string): string {
+//         var plaintText = plaintText;
+//         var options = {
+//             iv: CryptoJS.enc.Utf8.parse(iv),
+//             mode: CryptoJS.mode.CBC,
+//             padding: CryptoJS.pad.Pkcs7
+//         };
+//         var key = CryptoJS.enc.Utf8.parse(CRYPTOJSKEY);
+//         var encryptedData = CryptoJS.AES.encrypt(plaintText, key, options);
+//         var encryptedBase64Str = encryptedData.toString();
+//         return encryptedBase64Str;
+//     }
+//     //解密
+//     /*
+//     * {param} plaintText 解密密文
     
-    * return  str 解密结果
-*/
-    public static decrypt(encryptedBase64Str: string): string {
-        var encryptedBase64Str = encryptedBase64Str;
-        var options = {
-            mode: CryptoJS.mode.CBC,
-            padding: CryptoJS.pad.Pkcs7
-        };
-        var key = CryptoJS.enc.Utf8.parse(CRYPTOJSKEY);
-        // 解密
-        var decryptedData = CryptoJS.AES.decrypt(encryptedBase64Str, key, options);
-        // 解密后，需要按照Utf8的方式将明文转位字符串
-        var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8);
-        return decryptedStr;
-    }
+//     * return  str 解密结果
+// */
+//     public static decrypt(encryptedBase64Str: string): string {
+//         var encryptedBase64Str = encryptedBase64Str;
+//         var options = {
+//             mode: CryptoJS.mode.CBC,
+//             padding: CryptoJS.pad.Pkcs7
+//         };
+//         var key = CryptoJS.enc.Utf8.parse(CRYPTOJSKEY);
+//         // 解密
+//         var decryptedData = CryptoJS.AES.decrypt(encryptedBase64Str, key, options);
+//         // 解密后，需要按照Utf8的方式将明文转位字符串
+//         var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8);
+//         return decryptedStr;
+//     }
 
-  }
+//   }
 export default NuxtAuthHandler({
     // secret needed to run nuxt-auth in production mode (used to encrypt data)
     secret: process.env.NUXT_SECRET,
