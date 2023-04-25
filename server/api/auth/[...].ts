@@ -78,13 +78,13 @@ export default NuxtAuthHandler({
               
               // console.log(decrypt(credentials?.password))
 
-              try {
+              // try {
                 
-                console.log(AesManager.decrypt(credentials?.password));
-              }
-              catch (error) {
-                console.log(error)
-              }
+              //   console.log(AesManager.decrypt(credentials?.password));
+              // }
+              // catch (error) {
+              //   console.log(error)
+              // }
 
               // if (credentials?.username === user.username && credentials?.password === user.password) {
               if (credentials?.password === user.password) {
